@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face & Sound Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 36px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+        .section {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 20px;
+            width: 40%;
+        }
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .face, .sound {
+            font-size: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            background-color: #eee;
+            transition: background-color 0.3s;
+        }
+        .face:hover, .sound:hover {
+            background-color: #ddd;
+        }
+        #faceDisplay {
+            font-size: 100px;
+            margin-top: 30px;
+        }
+        #soundDisplay {
+            font-size: 30px;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Face & Sound Game</h1>
+
+    <div class="container">
+        <!-- Face Section -->
+        <div class="section">
+            <h2>Choose a Face</h2>
+            <div class="buttons">
+                <button class="face" onclick="makeFace('😃')">😃</button>
+                <button class="face" onclick="makeFace('😢')">😢</button>
+                <button class="face" onclick="makeFace('😡')">😡</button>
+                <button class="face" onclick="makeFace('😱')">😱</button>
+            </div>
+            <div id="faceDisplay">😀</div>
+        </div>
+
+        <!-- Sound Section -->
+        <div class="section">
+            <h2>Make a Sound</h2>
+            <div class="buttons">
+                <button class="sound" onclick="playSound('Laugh')">Laugh</button>
+                <button class="sound" onclick="playSound('Cry')">Cry</button>
+                <button class="sound" onclick="playSound('Scream')">Scream</button>
+                <button class="sound" onclick="playSound('Angry Shout')">Angry Shout</button>
+            </div>
+            <div id="soundDisplay"></div>
+        </div>
+    </div>
+
+    <script>
+        // Update the face display with selected emoji
+        function makeFace(face) {
+            document.getElementById('faceDisplay').textContent = face;
+        }
+
+        // Update the sound display and play the corresponding sound
+        function playSound(sound) {
+            document.getElementById('soundDisplay').textContent = sound;
+            let audio;
+            switch (sound) {
+                case 'Laugh':
+                    audio = new Audio('https://freesound.org/data/previews/512/512013_3797505-lq.mp3');
+                    break;
+                case 'Cry':
+                    audio = new Audio('https://freesound.org/data/previews/341/341628_526087-lq.mp3');
+                    break;
+                case 'Scream':
+                    audio = new Audio('https://freesound.org/data/previews/516/516411_1971463-lq.mp3');
+                    break;
+                case 'Angry Shout':
+                    audio = new Audio('https://freesound.org/data/previews/147/147740_3247678-lq.mp3');
+                    break;
+                default:
+                    audio = null;
+            }
+            if (audio) {
+                audio.play();
+            }
+        }
+    </script>
+
+</body>
+</html>
